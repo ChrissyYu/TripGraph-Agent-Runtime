@@ -1,0 +1,3 @@
+{"id": "route-001", "query": "规划上海到杭州的路线", "expected_tools": ["map", "weather"], "expected_output_schema": {"min_steps": 2, "required_keywords": ["路线", "杭州"]}, "difficulty": "medium"}
+{"id": "route-002", "query": "规划北京故宫到天坛的最佳路线", "expected_tools": ["map"], "expected_output_schema": {"min_steps": 2, "required_keywords": ["路线"]}, "difficulty": "easy"}
+{"id": "route-003", "query": "规划苏州园林一日游路线并查看天气", "expected_tools": ["map", "weather"], "expected_output_schema": {"min_steps": 2, "required_keywords": ["苏州"]}, "difficulty": "medium"}

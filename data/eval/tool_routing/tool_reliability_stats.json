@@ -1,0 +1,14 @@
+{
+  "weather": {
+    "builtin": {"success_rate": 0.98, "avg_latency_ms": 20, "fallback_rate": 0.01},
+    "mcp": {"success_rate": 0.90, "avg_latency_ms": 80, "fallback_rate": 0.10}
+  },
+  "map": {
+    "builtin": {"success_rate": 0.80, "avg_latency_ms": 30, "fallback_rate": 0.05},
+    "mcp": {"success_rate": 0.95, "avg_latency_ms": 70, "fallback_rate": 0.02}
+  },
+  "budget": {
+    "builtin": {"success_rate": 0.99, "avg_latency_ms": 10, "fallback_rate": 0.00},
+    "mcp": {"success_rate": 0.93, "avg_latency_ms": 50, "fallback_rate": 0.03}
+  }
+}

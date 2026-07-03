@@ -1,0 +1,75 @@
+flowchart TB
+    subgraph Entry["① 请求入口"]
+        C[Client / curl / SSE]
+        MW[RequestIDMiddleware<br/>注入 trace_id]
+        API["FastAPI /api/v1/graph/execute"]
+        GS[GraphService]
+    end
+
+    subgraph Bootstrap["② 启动装配（一次性）"]
+        AC[ApplicationContainer]
+        BR[bootstrap_runtime]
+        TR[ToolRegistry]
+        TE[ToolExecutor + ToolTracer]
+        PA[PlannerAgent + InstrumentedLLM]
+        GR[GraphRuntimeRunner]
+        OBS[MetricsObserver]
+        PER[ExecutionRecorder]
+    end
+
+    subgraph Macro["③ Macro Graph（agent_workflow）"]
+        ML[memory_load]
+        PL[planner]
+        CP[compile_plan]
+        RT[router]
+        EX[execution]
+        MP[memory_persist]
+        CR[critic]
+        RP[replanner]
+        FZ[finalize]
+    end
+
+    subgraph Sub["④ Plan 子图（PlanGraphCompiler）"]
+        PE[plan_entry]
+        S1[step_1]
+        J0[plan_join_0]
+        S2[step_2]
+        SN[step_N]
+    end
+
+    subgraph Tools["⑤ Tool 执行层"]
+        RTR[ToolSelectionRouter]
+        RES[StepToolResolver]
+        TEX[ToolExecutor]
+        W[weather / map / budget / echo]
+    end
+
+    subgraph Side["⑥ 旁路 Observer（非侵入）"]
+        MET[MetricsCollector → MetricsStore]
+        SQL[(SQLite via AsyncWriteQueue)]
+        LOG[JSON Structured Log]
+    end
+
+    C --> MW --> API --> GS --> GR
+    AC --> BR --> GR
+    BR --> TR & TE & PA & OBS & PER
+
+    GR --> ML --> PL --> CP --> RT --> EX
+    EX --> PE --> S1 --> J0 --> S2 --> SN
+    S1 & S2 & SN --> TEX --> W
+    RT --> RTR
+    EX --> RES
+
+    EX --> MP
+    MP -->|should_stop| FZ
+    MP -->|continue| CR
+    CR -->|need_replan| RP --> RT
+    CR -->|done| FZ
+    FZ --> MP
+
+    GR -.->|on_graph_event| OBS
+    GR -.->|on_graph_event| PER
+    TE -.->|on_tool_record| OBS
+    TE -.->|on_tool_record| PER
+    OBS --> MET
+    PER --> SQL

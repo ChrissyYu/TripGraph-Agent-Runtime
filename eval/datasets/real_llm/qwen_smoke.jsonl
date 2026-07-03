@@ -1,0 +1,3 @@
+{"id": "qwen-smoke-001", "query": "帮我规划上海3日游，查询天气、规划路线并计算预算", "expected_tools": ["weather", "map", "budget"], "expected_output_schema": {"min_steps": 2, "required_keywords": ["上海"]}, "difficulty": "medium"}
+{"id": "qwen-smoke-002", "query": "规划北京2日游并计算预算", "expected_tools": ["map", "budget"], "expected_output_schema": {"min_steps": 2, "required_keywords": ["北京"]}, "difficulty": "easy"}
+{"id": "qwen-smoke-003", "query": "杭州1日游，帮我规划路线", "expected_tools": ["map"], "expected_output_schema": {"min_steps": 1, "required_keywords": ["杭州"]}, "difficulty": "easy"}

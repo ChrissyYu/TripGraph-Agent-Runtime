@@ -1,0 +1,61 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+!.env.example
+*.pem
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.cache/
+
+# Logs & local databases
+logs/
+*.log
+*.db
+*.sqlite
+*.sqlite3
+
+# Runtime data — ignore by default; un-ignore versioned eval assets below
+data/*
+!data/eval/
+data/eval/*
+!data/eval/tool_routing/
+data/eval/tool_routing/*
+!data/eval/tool_routing/tool_reliability_stats.json
+
+# Tool routing eval run artifacts (do not commit)
+data/eval/tool_routing/latest_report.json
+data/eval/tool_routing/tool_routing_report_*.json
+
+# Graph demo eval run artifacts (do not commit)
+data/eval/graph_demo/latest_report.json
+data/eval/graph_demo/graph_demo_report_*.json
+
+# macOS
+.DS_Store
+._*
+.obsidian/

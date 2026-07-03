@@ -1,0 +1,14 @@
+# Phase 9B MCP overlay — install AFTER requirements.txt
+#
+#   pip install -r requirements.txt
+#   pip install -r requirements-mcp.txt
+#
+# Do NOT include -r requirements.txt here: re-resolving base pins (pydantic, etc.)
+# fails on flaky networks even when those packages are already installed.
+#
+# Keeps starlette compatible with fastapi==0.115.6 (starlette<0.42).
+# Do NOT run bare `pip install mcp` — it upgrades starlette to 1.x.
+
+mcp>=1.28.0,<1.29
+starlette>=0.40.0,<0.42.0
+sse-starlette>=2.0,<3.0

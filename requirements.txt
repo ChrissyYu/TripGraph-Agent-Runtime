@@ -1,0 +1,10 @@
+# Generated for Phase 8 deployment (Python 3.11)
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+pydantic-settings==2.7.0
+httpx==0.28.1
+python-dotenv==1.0.1
+# Optional MCP integration (Phase 9B):
+#   pip install -r requirements-mcp.txt
+# Do NOT run bare `pip install mcp` — it upgrades starlette to 1.x and breaks fastapi 0.115.6.

@@ -1,0 +1,3 @@
+{"id": "budget-001", "query": "计算上海3日游预算", "expected_tools": ["budget", "weather"], "expected_output_schema": {"min_steps": 2, "required_keywords": ["预算"]}, "difficulty": "medium"}
+{"id": "budget-002", "query": "规划成都美食之旅并估算总花费", "expected_tools": ["budget", "weather", "map"], "expected_output_schema": {"min_steps": 3, "required_keywords": ["预算"]}, "difficulty": "hard"}
+{"id": "budget-003", "query": "北京5日旅游费用明细", "expected_tools": ["budget"], "expected_output_schema": {"min_steps": 2, "required_keywords": ["预算", "北京"]}, "difficulty": "medium"}

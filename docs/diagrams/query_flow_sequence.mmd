@@ -1,0 +1,47 @@
+sequenceDiagram
+    participant U as 用户
+    participant API as FastAPI
+    participant GR as GraphRuntimeRunner
+    participant G as Graph Engine
+    participant PA as PlannerAgent
+    participant PE as PlanExecutor
+    participant TE as ToolExecutor
+    participant OBS as MetricsObserver
+    participant DB as SQLite
+
+    U->>API: POST query + session_id
+    API->>API: RequestID → trace_id
+    API->>GR: GraphService.execute()
+    GR->>GR: 创建 AgentState + begin_execution()
+    Note over GR,DB: execution_id 生成，Observer 开始录制
+
+    GR->>G: astream(state)
+
+    G->>G: memory_load（加载 short/long/episodic memory）
+    G->>PA: planner_node → create_plan(query)
+    PA-->>G: Plan（3 steps: weather→map→budget）
+    G->>G: compile_plan（PlanGraphCompiler → 子图）
+    G->>G: router_node（绑定 tool_hint / ToolRouter）
+    G->>PE: execution_node → 执行子图 step_1..N
+    PE->>TE: weather / map / budget
+    TE-->>PE: tool outputs → global_context
+    PE-->>G: execution_trace 更新
+
+    G->>G: memory_persist（写入 episodic memory）
+    G->>G: critic_node（评估是否满足 goal）
+    alt need_replan = false
+        G->>G: finalize → should_stop=true
+    else need_replan = true
+        G->>G: replanner → router → execution（循环）
+    end
+
+    loop 每个 graph / tool 事件
+        G-->>OBS: on_graph_event
+        G-->>DB: ExecutionRecorder（异步队列）
+        TE-->>OBS: on_tool_record
+        TE-->>DB: tool_calls 写入
+    end
+
+    G-->>GR: final AgentState
+    GR-->>API: GraphExecuteResponse
+    API-->>U: JSON 或 SSE stream（start→graph_node→done）
