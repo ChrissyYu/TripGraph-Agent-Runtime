@@ -10,7 +10,7 @@ A graph-native Agent Infra prototype for LLM orchestration, MCP tools, policy ro
 
 ## 📚 Table of Contents
 
-- [Project Background](# 🛠️ Project Background)
+- [Project Background](#project-background)
 - [What This Project Builds](#what-this-project-builds)
 - [System Overview](#system-overview)
 - [Key Capabilities](#key-capabilities)
@@ -26,6 +26,7 @@ A graph-native Agent Infra prototype for LLM orchestration, MCP tools, policy ro
 
 ---
 
+<a id="project-background"></a>
 ## 🛠️ Project Background
 
 Modern agent systems are hard to ship because:
@@ -39,6 +40,7 @@ TripGraph addresses the **infrastructure layer**: how to run plans as graphs, ro
 
 ---
 
+<a id="what-this-project-builds"></a>
 ## 🏗️ What This Project Builds
 
 - **Graph-native runtime** for plan → execute → critique → replan loops.
@@ -50,6 +52,7 @@ TripGraph addresses the **infrastructure layer**: how to run plans as graphs, ro
 
 ---
 
+<a id="system-overview"></a>
 ## 📊 System Overview
 
 ```mermaid
@@ -67,6 +70,7 @@ flowchart TB
 
 ---
 
+<a id="key-capabilities"></a>
 ## 🔑 Key Capabilities
 
 ### Graph-native Agent Runtime
@@ -101,6 +105,7 @@ Offline tool routing evaluation with saved baseline comparison. Graph-level demo
 
 ---
 
+<a id="quick-start"></a>
 ## 🚀 Quick Start
 
 ```bash
@@ -137,6 +142,7 @@ curl http://localhost:8000/api/v1/ready
 
 ---
 
+<a id="demo-and-evaluation-commands"></a>
 ## 📋 Demo and Evaluation Commands
 
 | Command | Requires | What it validates |
@@ -150,6 +156,7 @@ curl http://localhost:8000/api/v1/ready
 
 ---
 
+<a id="validation-snapshot"></a>
 ## 📊 Validation Snapshot
 
 Latest deterministic validation snapshot (RuleBased LLM + mock/local tools, no external API):
@@ -172,6 +179,7 @@ These metrics validate **infrastructure behavior** rather than real travel quali
 
 ---
 
+<a id="real-vs-mock-boundaries"></a>
 ## 🛠️ Real vs Mock Boundaries
 
 **Implemented / real infrastructure**
@@ -191,6 +199,7 @@ These metrics validate **infrastructure behavior** rather than real travel quali
 
 ---
 
+<a id="repository-structure"></a>
 ## 📁 Repository Structure
 
 ```
@@ -208,6 +217,7 @@ docs/             Engineering notes (not linked from this page)
 
 ---
 
+<a id="roadmap"></a>
 ## 🛣️ Roadmap
 
 - [x] Graph Runtime
