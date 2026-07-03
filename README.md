@@ -10,7 +10,7 @@ A graph-native Agent Infra prototype for LLM orchestration, MCP tools, policy ro
 
 ## 📚 Table of Contents
 
-- [Project Background](#🛠️ Project Background)
+- [Project Background](# 🛠️ Project Background)
 - [What This Project Builds](#what-this-project-builds)
 - [System Overview](#system-overview)
 - [Key Capabilities](#key-capabilities)
