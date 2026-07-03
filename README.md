@@ -58,11 +58,11 @@ TripGraph addresses the **infrastructure layer**: how to run plans as graphs, ro
 ```mermaid
 flowchart TB
     Q[User Query] --> GR[Graph Runtime]
-    GR --> PAC[Planner / Critic / Replanner]
+    GR --> PAC[Planning / Critic / Replanning]
     PAC --> TPE[Tool Policy Engine]
     TPE --> TE[ToolExecutor]
-    TE --> BT[builtin mock tools]
-    TE --> MT[MCP mock tools]
+    TE --> BT[Built-in Mock Tools]
+    TE --> MT[MCP-Style Tools]
     GR --> OBS[Observability]
     OBS --> EV[Evaluation]
     EV --> RG[Regression Guard]
